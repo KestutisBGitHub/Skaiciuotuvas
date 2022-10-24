@@ -78,8 +78,8 @@ const demenys = btnVerte => {
   if (!btnVerte) {
     console.log("nepataikei i skaiciu");
   } else if (
-    btnVerte === "," ||
-    (btnVerte !== "=" && isNaN(btnVerte) === false)
+    veiksmas === "" &&
+    (btnVerte === "," || (btnVerte !== "=" && isNaN(btnVerte) === false))
   ) {
     console.log("darom pirma skaiciu");
   } else if (btnVerte !== "," && btnVerte !== "=" && isNaN(btnVerte)) {
@@ -87,7 +87,7 @@ const demenys = btnVerte => {
     veiksmas = skaicius;
     console.log(veiksmas);
     console.log("zenklas");
-  } else if (true) {
+  } else if (btnVerte !== "=") {
     console.log("darom antra skaiciu");
     /*     pirmasDemuo = pirmasDemuo + skaicius;
     console.log(pirmasDemuo); */
