@@ -34,6 +34,12 @@
 
 /* sukurti mygtuka */
 
+let atmintis = 0;
+let pirmasDemuo = "";
+let veiksmas = "";
+let antrasDemuo = "";
+let rezulttas = 0;
+
 const createButton = (location, name) => {
   name.forEach(element => {
     const button = document.createElement("button");
@@ -59,26 +65,37 @@ document.querySelector("body").addEventListener("click", event => {
 /* skaiciavimo funkcija */
 
 const calculator = (pirmasDemuo, antrasDemuo, veiksmas) => {
-  if (veiksmas === "+") {
-    rezulttas = parseFloat(pirmasDemuo) + parseFloat(antrasDemuo);
-  } else if (veiksmas === "-") {
-    rezulttas = parseFloat(pirmasDemuo) - parseFloat(antrasDemuo);
-  } else if (veiksmas === "/") {
-    rezulttas = parseFloat(pirmasDemuo) / parseFloat(antrasDemuo);
-  } else if (veiksmas === "x") {
-    rezulttas = parseFloat(pirmasDemuo) * parseFloat(antrasDemuo);
+  if (atmintis === 0) {
+    if (veiksmas === "+") {
+      rezulttas = parseFloat(pirmasDemuo) + parseFloat(antrasDemuo);
+    } else if (veiksmas === "-") {
+      rezulttas = parseFloat(pirmasDemuo) - parseFloat(antrasDemuo);
+    } else if (veiksmas === "/") {
+      rezulttas = parseFloat(pirmasDemuo) / parseFloat(antrasDemuo);
+    } else if (veiksmas === "x") {
+      rezulttas = parseFloat(pirmasDemuo) * parseFloat(antrasDemuo);
+    }
+    document.querySelector(".screenDiv").append(`=${rezulttas}`);
+  } else {
+    if (veiksmas === "+") {
+      console.log(`atminti ${atmintis} + antras demuo ${antrasDemuo}`);
+      rezulttas = atmintis + parseFloat(antrasDemuo);
+    } else if (veiksmas === "-") {
+      rezulttas = atmintis - parseFloat(antrasDemuo);
+    } else if (veiksmas === "/") {
+      rezulttas = atmintis / parseFloat(antrasDemuo);
+    } else if (veiksmas === "x") {
+      rezulttas = atmintis * parseFloat(antrasDemuo);
+    }
+    document.querySelector(".screenDiv").append(`=${rezulttas}`);
   }
-  document.querySelector(".screenDiv").append(`=${rezulttas}`);
-  console.log(rezulttas);
-
+  /* neiseina nunulinti antro demens vertes kad galetu paimti rezultata ir prideti prie jo antra demeni */
+  atmintis = rezulttas;
   antrasDemuo = "";
-  pirmasDemuo = rezulttas;
-};
 
-let pirmasDemuo = "";
-let veiksmas = "";
-let antrasDemuo = "";
-let rezulttas = 0;
+  rezulttas = 0;
+  console.log("atmintis " + atmintis);
+};
 
 const demenys = btnVerte => {
   const skaicius = btnVerte;
@@ -99,23 +116,21 @@ const demenys = btnVerte => {
     (btnVerte === "." || (btnVerte !== "=" && isNaN(btnVerte) === false))
   ) {
     if (btnVerte === "." && pirmasDemuo.indexOf(".") !== -1) {
-      console.log("kablelis jau yra");
     } else {
       pirmasDemuo += skaicius;
-      console.log("darom pirma skaiciu");
+
       document.querySelector(".screenDiv").append(skaicius);
     }
   } else if (btnVerte !== "." && btnVerte !== "=" && isNaN(btnVerte)) {
     veiksmas = "";
     veiksmas = skaicius;
-    console.log(veiksmas);
-    console.log("zenklas");
+
     document.querySelector(".screenDiv").append(skaicius);
   } else if (btnVerte !== "=") {
     if (btnVerte === "." && antrasDemuo.indexOf(".") !== -1) {
     } else {
       antrasDemuo += skaicius;
-      console.log("darom antra skaiciu");
+
       document.querySelector(".screenDiv").append(skaicius);
     }
   } else if (btnVerte === "=") {
