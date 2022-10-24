@@ -94,9 +94,13 @@ const demenys = btnVerte => {
     veiksmas === "" &&
     (btnVerte === "." || (btnVerte !== "=" && isNaN(btnVerte) === false))
   ) {
-    pirmasDemuo += skaicius;
-    console.log("darom pirma skaiciu");
-    document.querySelector(".screenDiv").append(skaicius);
+    if (btnVerte === "." && pirmasDemuo.indexOf(".") !== -1) {
+      console.log("kablelis jau yra");
+    } else {
+      pirmasDemuo += skaicius;
+      console.log("darom pirma skaiciu");
+      document.querySelector(".screenDiv").append(skaicius);
+    }
   } else if (btnVerte !== "." && btnVerte !== "=" && isNaN(btnVerte)) {
     veiksmas = "";
     veiksmas = skaicius;
@@ -104,9 +108,12 @@ const demenys = btnVerte => {
     console.log("zenklas");
     document.querySelector(".screenDiv").append(skaicius);
   } else if (btnVerte !== "=") {
-    antrasDemuo += skaicius;
-    console.log("darom antra skaiciu");
-    document.querySelector(".screenDiv").append(skaicius);
+    if (btnVerte === "." && antrasDemuo.indexOf(".") !== -1) {
+    } else {
+      antrasDemuo += skaicius;
+      console.log("darom antra skaiciu");
+      document.querySelector(".screenDiv").append(skaicius);
+    }
   } else if (btnVerte === "=") {
     calculator(pirmasDemuo, antrasDemuo, veiksmas);
   }
