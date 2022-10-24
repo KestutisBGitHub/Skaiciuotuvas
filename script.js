@@ -32,6 +32,18 @@
 
 // Sėkmės!
 
+/* sukurti mygtuka */
+
+const createButton = (location, name) => {
+  name.forEach(element => {
+    const button = document.createElement("button");
+    button.classList.add("btn");
+    button.style.border = "1px solid black";
+    document.querySelector(`.${location}`).append(button);
+    button.innerHTML = `${element}`; /// istrinti
+  });
+};
+
 /* skaiciuotuvo dizainas */
 
 const calculatorDesign = () => {
@@ -50,56 +62,36 @@ const calculatorDesign = () => {
   keysDiv1.classList.add("keysDiv1");
   keysDiv1.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv1);
-
-  const firstRowFirst = document.createElement("button");
-  firstRowFirst.classList.add("firstRowFirst");
-  firstRowFirst.style.border = "1px solid black";
-  document.querySelector(".keysDiv1").append(firstRowFirst);
-  firstRowFirst.innerHTML = "MR"; /// istrinti
-
-  const firstRowSecond = document.createElement("button");
-  firstRowSecond.classList.add("firstRowSecond");
-  firstRowSecond.style.border = "1px solid black";
-  document.querySelector(".keysDiv1").append(firstRowSecond);
-  firstRowSecond.innerHTML = "M+"; /// istrinti
-
-  const firstRowThird = document.createElement("button");
-  firstRowThird.classList.add("firstRowThird");
-  firstRowThird.style.border = "1px solid black";
-  document.querySelector(".keysDiv1").append(firstRowThird);
-  firstRowThird.innerHTML = "M-"; /// istrinti
-
-  const firstRowFourth = document.createElement("button");
-  firstRowFourth.classList.add("firstRowFourth");
-  firstRowFourth.style.border = "1px solid black";
-  document.querySelector(".keysDiv1").append(firstRowFourth);
-  firstRowFourth.innerHTML = "/"; /// istrinti
+  const buttonsRow1 = ["MR", "M+", "M-", "/"];
+  createButton("keysDiv1", buttonsRow1);
 
   const keysDiv2 = document.createElement("div");
   keysDiv2.classList.add("keysDiv2");
   keysDiv2.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv2);
+  const buttonsRow2 = ["7", "8", "9", "x"];
+  createButton("keysDiv2", buttonsRow2);
 
   const keysDiv3 = document.createElement("div");
   keysDiv3.classList.add("keysDiv3");
   keysDiv3.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv3);
+  const buttonsRow3 = ["4", "5", "6", "-"];
+  createButton("keysDiv3", buttonsRow3);
 
   const keysDiv4 = document.createElement("div");
   keysDiv4.classList.add("keysDiv4");
   keysDiv4.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv4);
+  const buttonsRow4 = ["1", "2", "3", "+"];
+  createButton("keysDiv4", buttonsRow4);
 
   const keysDiv5 = document.createElement("div");
   keysDiv5.classList.add("keysDiv5");
   keysDiv5.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv5);
-
-  const xxx = document.createElement("button");
-  xxx.classList.add("xxx");
-  xxx.style.border = "1px solid black";
-  document.querySelector(".keysDiv1").append(xxx);
-  xxx.innerHTML = "test"; /// istrinti
+  const buttonsRow5 = ["C", "0", ",", "="];
+  createButton("keysDiv5", buttonsRow5);
 };
 
 calculatorDesign();
