@@ -59,6 +59,23 @@ document.querySelector("body").addEventListener("click", event => {
 
 /* skaiciavimo funkcija */
 
+const calculator = (pirmasDemuo, antrasDemuo, veiksmas) => {
+  if (veiksmas === "+") {
+    rezulttas = parseInt(pirmasDemuo) + parseInt(antrasDemuo);
+  } else if (veiksmas === "-") {
+    rezulttas = parseInt(pirmasDemuo) - parseInt(antrasDemuo);
+  } else if (veiksmas === "/") {
+    rezulttas = parseInt(pirmasDemuo) / parseInt(antrasDemuo);
+  } else if (veiksmas === "x") {
+    rezulttas = parseInt(pirmasDemuo) * parseInt(antrasDemuo);
+  }
+  document.querySelector(".screenDiv").append(`=${rezulttas}`);
+  console.log(rezulttas);
+
+  antrasDemuo = "";
+  pirmasDemuo = rezulttas;
+};
+
 /* const pirmasDemuo = skaicius => {
   let pirmasDemuo = 0;
   pirmasDemuo = pirmasDemuo + skaicius;
@@ -67,11 +84,13 @@ document.querySelector("body").addEventListener("click", event => {
 let pirmasDemuo = "";
 let veiksmas = "";
 let antrasDemuo = "";
+let rezulttas = 0;
 
 const demenys = btnVerte => {
   const skaicius = btnVerte;
 
   if (btnVerte === "C") {
+    window.location.reload();
     return;
   }
 
@@ -81,16 +100,23 @@ const demenys = btnVerte => {
     veiksmas === "" &&
     (btnVerte === "," || (btnVerte !== "=" && isNaN(btnVerte) === false))
   ) {
+    pirmasDemuo += skaicius;
     console.log("darom pirma skaiciu");
+    document.querySelector(".screenDiv").append(skaicius);
   } else if (btnVerte !== "," && btnVerte !== "=" && isNaN(btnVerte)) {
     veiksmas = "";
     veiksmas = skaicius;
     console.log(veiksmas);
     console.log("zenklas");
+    document.querySelector(".screenDiv").append(skaicius);
   } else if (btnVerte !== "=") {
+    antrasDemuo += skaicius;
     console.log("darom antra skaiciu");
+    document.querySelector(".screenDiv").append(skaicius);
     /*     pirmasDemuo = pirmasDemuo + skaicius;
     console.log(pirmasDemuo); */
+  } else if (btnVerte === "=") {
+    calculator(pirmasDemuo, antrasDemuo, veiksmas);
   }
 };
 
@@ -109,7 +135,6 @@ const calculatorDesign = () => {
   screenDiv.style.border = "1px solid black";
   document.querySelector(".frame").append(screenDiv);
   screenDiv.style.height = "40px";
-  screenDiv.innerHTML = "test"; /// istrinti
 
   const keysDiv1 = document.createElement("div");
   keysDiv1.classList.add("keysDiv1");
