@@ -39,10 +39,22 @@ const createButton = (location, name) => {
     const button = document.createElement("button");
     button.classList.add("btn");
     button.style.border = "1px solid black";
+    button.style.width = "40px";
+    button.style.height = "40px";
     document.querySelector(`.${location}`).append(button);
-    button.innerHTML = `${element}`; /// istrinti
+    button.textContent = `${element}`;
+    button.value = `${element}`;
+    console.log(button.value);
   });
 };
+
+/* listener */
+
+const listener = document
+  .querySelector(".frame")
+  .addEventListener("click", event => {
+    event.preventDefault();
+  });
 
 /* skaiciuotuvo dizainas */
 
@@ -51,11 +63,14 @@ const calculatorDesign = () => {
   frame.classList.add("frame");
   frame.style.border = "1px solid black";
   document.body.append(frame);
+  frame.style.width = "162px";
+  frame.style.padding = "5px";
 
   const screenDiv = document.createElement("div");
   screenDiv.classList.add("screenDiv");
   screenDiv.style.border = "1px solid black";
   document.querySelector(".frame").append(screenDiv);
+  screenDiv.style.height = "40px";
   screenDiv.innerHTML = "test"; /// istrinti
 
   const keysDiv1 = document.createElement("div");
