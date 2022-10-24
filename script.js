@@ -44,7 +44,6 @@ const createButton = (location, name) => {
     document.querySelector(`.${location}`).append(button);
     button.textContent = `${element}`;
     button.value = `${element}`;
-    //console.log(button.value);
   });
 };
 
@@ -53,7 +52,7 @@ const createButton = (location, name) => {
 document.querySelector("body").addEventListener("click", event => {
   event.preventDefault();
   const verte = event.target.value;
-  //console.log(verte);
+
   demenys(verte);
 });
 
@@ -61,13 +60,13 @@ document.querySelector("body").addEventListener("click", event => {
 
 const calculator = (pirmasDemuo, antrasDemuo, veiksmas) => {
   if (veiksmas === "+") {
-    rezulttas = parseInt(pirmasDemuo) + parseInt(antrasDemuo);
+    rezulttas = parseFloat(pirmasDemuo) + parseFloat(antrasDemuo);
   } else if (veiksmas === "-") {
-    rezulttas = parseInt(pirmasDemuo) - parseInt(antrasDemuo);
+    rezulttas = parseFloat(pirmasDemuo) - parseFloat(antrasDemuo);
   } else if (veiksmas === "/") {
-    rezulttas = parseInt(pirmasDemuo) / parseInt(antrasDemuo);
+    rezulttas = parseFloat(pirmasDemuo) / parseFloat(antrasDemuo);
   } else if (veiksmas === "x") {
-    rezulttas = parseInt(pirmasDemuo) * parseInt(antrasDemuo);
+    rezulttas = parseFloat(pirmasDemuo) * parseFloat(antrasDemuo);
   }
   document.querySelector(".screenDiv").append(`=${rezulttas}`);
   console.log(rezulttas);
@@ -76,11 +75,6 @@ const calculator = (pirmasDemuo, antrasDemuo, veiksmas) => {
   pirmasDemuo = rezulttas;
 };
 
-/* const pirmasDemuo = skaicius => {
-  let pirmasDemuo = 0;
-  pirmasDemuo = pirmasDemuo + skaicius;
-  console.log(pirmasDemuo);
-}; */
 let pirmasDemuo = "";
 let veiksmas = "";
 let antrasDemuo = "";
@@ -98,12 +92,12 @@ const demenys = btnVerte => {
     console.log("nepataikei i skaiciu");
   } else if (
     veiksmas === "" &&
-    (btnVerte === "," || (btnVerte !== "=" && isNaN(btnVerte) === false))
+    (btnVerte === "." || (btnVerte !== "=" && isNaN(btnVerte) === false))
   ) {
     pirmasDemuo += skaicius;
     console.log("darom pirma skaiciu");
     document.querySelector(".screenDiv").append(skaicius);
-  } else if (btnVerte !== "," && btnVerte !== "=" && isNaN(btnVerte)) {
+  } else if (btnVerte !== "." && btnVerte !== "=" && isNaN(btnVerte)) {
     veiksmas = "";
     veiksmas = skaicius;
     console.log(veiksmas);
@@ -113,8 +107,6 @@ const demenys = btnVerte => {
     antrasDemuo += skaicius;
     console.log("darom antra skaiciu");
     document.querySelector(".screenDiv").append(skaicius);
-    /*     pirmasDemuo = pirmasDemuo + skaicius;
-    console.log(pirmasDemuo); */
   } else if (btnVerte === "=") {
     calculator(pirmasDemuo, antrasDemuo, veiksmas);
   }
@@ -168,7 +160,7 @@ const calculatorDesign = () => {
   keysDiv5.classList.add("keysDiv5");
   keysDiv5.style.border = "1px solid black";
   document.querySelector(".frame").append(keysDiv5);
-  const buttonsRow5 = ["C", "0", ",", "="];
+  const buttonsRow5 = ["C", "0", ".", "="];
   createButton("keysDiv5", buttonsRow5);
 };
 
