@@ -50,11 +50,11 @@ const createButton = (location, name) => {
 
 /* listener */
 
-const listener = document
-  .querySelector(".frame")
-  .addEventListener("click", event => {
-    event.preventDefault();
-  });
+document.querySelector("body").addEventListener("click", event => {
+  event.preventDefault();
+  const verte = event.target.value;
+  console.log(verte);
+});
 
 /* skaiciuotuvo dizainas */
 
