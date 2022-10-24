@@ -44,7 +44,7 @@ const createButton = (location, name) => {
     document.querySelector(`.${location}`).append(button);
     button.textContent = `${element}`;
     button.value = `${element}`;
-    console.log(button.value);
+    //console.log(button.value);
   });
 };
 
@@ -53,8 +53,46 @@ const createButton = (location, name) => {
 document.querySelector("body").addEventListener("click", event => {
   event.preventDefault();
   const verte = event.target.value;
-  console.log(verte);
+  //console.log(verte);
+  demenys(verte);
 });
+
+/* skaiciavimo funkcija */
+
+/* const pirmasDemuo = skaicius => {
+  let pirmasDemuo = 0;
+  pirmasDemuo = pirmasDemuo + skaicius;
+  console.log(pirmasDemuo);
+}; */
+let pirmasDemuo = "";
+let veiksmas = "";
+let antrasDemuo = "";
+
+const demenys = btnVerte => {
+  const skaicius = btnVerte;
+
+  if (btnVerte === "C") {
+    return;
+  }
+
+  if (!btnVerte) {
+    console.log("nepataikei i skaiciu");
+  } else if (
+    btnVerte === "," ||
+    (btnVerte !== "=" && isNaN(btnVerte) === false)
+  ) {
+    console.log("darom pirma skaiciu");
+  } else if (btnVerte !== "," && btnVerte !== "=" && isNaN(btnVerte)) {
+    veiksmas = "";
+    veiksmas = skaicius;
+    console.log(veiksmas);
+    console.log("zenklas");
+  } else if (true) {
+    console.log("darom antra skaiciu");
+    /*     pirmasDemuo = pirmasDemuo + skaicius;
+    console.log(pirmasDemuo); */
+  }
+};
 
 /* skaiciuotuvo dizainas */
 
