@@ -87,6 +87,10 @@ const demenys = btnVerte => {
     window.location.reload();
     return;
   }
+  if (btnVerte === "MR" || btnVerte === "M+" || btnVerte === "M-") {
+    alert("Please purchase Premium version");
+    return;
+  }
 
   if (!btnVerte) {
     console.log("nepataikei i skaiciu");
